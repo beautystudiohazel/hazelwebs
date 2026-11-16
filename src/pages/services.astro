@@ -27,7 +27,6 @@ const menuGroups = [
       <nav class="category-nav" aria-label="Jump to a service section">
         {menuGroups.map(group => <a href={`#${group.id}`}>{group.name}<span aria-hidden="true">↓</span></a>)}
       </nav>
-      <p class="small">“From” means a starting price. Contact the studio to discuss final pricing and services without listed prices.</p>
     </aside>
     <div class="price-menu">
       {menuGroups.map((group, groupIndex) => (

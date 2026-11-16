@@ -85,3 +85,4 @@ Pages are in `src/pages/`; editable navigation data is in `src/data/config.ts`, 
 - [ ] Review the site on phone/tablet/desktop, verify phone/map/social links after filling them in, and test the Booksy destination when enabled.
 
 The original logo and owner biography are outstanding inputs. The public phone number, address, and hours were confirmed by the owner. No founder biography, credentials, awards, testimonials, packages, durations, or guaranteed results are invented.
+# hazelwebs
