@@ -21,6 +21,7 @@ for (const route of routes) {
   assert.match(html, /href="#main"/, `${route}: skip navigation link`);
   assert.match(html, /href="\/favicon.svg"/, `${route}: site icon`);
   assert.match(html, /class="header-logo"/, `${route}: shared studio logo in header`);
+  assert.match(html, /class="header-brand-name"/, `${route}: readable studio name in header`);
   assert.match(html, /class="footer-logo"/, `${route}: shared studio logo in footer`);
   for (const [, raw] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const url = new URL(raw.replaceAll('&amp;', '&'), `https://local.test${route}`);

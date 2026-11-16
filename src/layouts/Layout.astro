@@ -27,7 +27,7 @@ const metaDescription = `${description}${site.city ? ` Visit us in ${site.city}.
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={studioLogo} alt="" width={600} height={306} fetchpriority="high" /></a>
+    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={studioLogo} alt="" width={600} height={306} fetchpriority="high" /><span class="header-brand-name">Hazel Beauty<br />Studio</span></a>
     <nav class="desktop-nav" aria-label="Main navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
     <div class="header-booking"><BookingLink /></div>
     <details class="mobile-nav"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}<BookingLink /></nav></details>
