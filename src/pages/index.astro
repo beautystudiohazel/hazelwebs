@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import BookingLink from '../components/BookingLink.astro';
+import { categories, priceLabel } from '../data/services';
+import { site } from '../data/config';
+import { eventInquiry } from '../data/site';
+const service = (name: string) => categories.flatMap(category => category.services).find(item => item.name === name)!;
+const overviews = [
+  { title: 'Hair', summary: 'Cuts, styling, color & smoothing treatments', href: '/services/#cuts', action: 'Explore hair services', services: [{ service: service('Regular Trim'), label: 'Regular trim' }, { service: service('Cut & Style'), label: 'Cut & style' }] },
+  { title: 'Skin', summary: 'Facials & skin care', href: '/services/#skin-care', action: 'Explore facials', services: [{ service: service('Regular Full Facial'), label: 'Regular full facial' }, { service: service('Brightening Facial'), label: 'Brightening facial' }] },
+  { title: 'Waxing', summary: 'Brows & body waxing', href: '/services/#waxing', action: 'Explore waxing', services: [{ service: service('Eyebrows'), label: 'Eyebrow waxing' }, { service: service('Underarms'), label: 'Underarm waxing' }] },
+];
+---
+<Layout title="Hair, skin & occasion beauty" description="Haircuts, color, facials, waxing, bridal beauty, and henna party bookings at Hazel Beauty Studio in Bolingbrook. Browse prices and request an appointment.">
+  <section class="wire-hero section">
+    <div class="wire-hero-copy"><p class="eyebrow">Hair, skin &amp; occasion beauty in {site.city}</p><h1><span>A little refresh.</span> <span>Completely you.</span></h1><p>Cuts, color, facials, waxing, makeup, and henna at Hazel Beauty Studio.</p><div class="actions"><a class="button" href="/services/">Explore Services <span aria-hidden="true">→</span></a><BookingLink variant="link" /></div></div>
+    <figure class="wire-hero-image"><Photo kind="mockupHero" eager /><figcaption>Editorial inspiration; this is not studio or client work.</figcaption></figure>
+  </section>
+  <section class="wire-section section services-overview" aria-labelledby="services-overview-title"><p class="eyebrow">SERVICES &amp; PRICING</p><h2 id="services-overview-title">What are you coming in for?</h2><div class="services-overview-grid">
+    {overviews.map(column => <article class="services-overview-column"><h3>{column.title}</h3><p class="overview-summary">{column.summary}</p><dl>{column.services.map(item => <div><dt>{item.label}</dt><dd>{priceLabel(item.service)}</dd></div>)}</dl><a class="text-link" href={column.href}>{column.action}<span aria-hidden="true">→</span></a></article>)}
+    <article class="services-overview-column"><h3>Bridal &amp; Henna</h3><p class="overview-summary">Hair, makeup &amp; henna for celebrations</p><ul><li>Bridal hair &amp; makeup</li><li>Henna party bookings</li></ul><p class="overview-contact">Contact for pricing</p><a class="text-link" href="/bridal-events/">Explore occasion services<span aria-hidden="true">→</span></a></article>
+  </div><a class="text-link overview-all" href="/services/">View All Services &amp; Prices<span aria-hidden="true">→</span></a></section>
+  <section class="wire-about section" aria-labelledby="owner-intro-title">
+    <figure class="wire-about-image"><Photo kind="owner" /></figure>
+    <div class="wire-about-copy">
+      <p class="eyebrow">The person behind Hazel</p>
+      <h2 id="owner-intro-title">A personal introduction to Hazel.</h2>
+      <p>Hazel Beauty Studio brings hair, skin care, waxing, makeup, and henna services together in Bolingbrook.</p>
+      <a class="text-link" href="/about-contact/">More about Hazel <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  <section class="wire-event" aria-labelledby="occasion-title">
+    <div class="wire-event-intro">
+      <p class="eyebrow">Bridal · Party Makeup · Henna</p>
+      <h2 id="occasion-title">For your next <em>celebration.</em></h2>
+      <p>Explore hair, makeup, and henna services for your occasion.</p>
+    </div>
+    <div class="wire-event-details">
+      <ul aria-label="Occasion services">
+        <li>Bridal makeup</li>
+        <li>Bridal hairstyling</li>
+        <li>Party makeup</li>
+        <li>Henna party bookings</li>
+      </ul>
+      <a class="text-link" href={eventInquiry}>Discuss your occasion <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  {site.showRealWork && <section class="wire-real-work section" id="work" aria-labelledby="real-work-title">
+    <div><p class="eyebrow">OUR WORK</p><h2 id="real-work-title">A look from the salon.</h2></div>
+    <figure><Photo kind="hairWork2" /><figcaption>Hair work at Hazel Beauty Studio.</figcaption></figure>
+  </section>}
+  <section class="wire-visit section" aria-labelledby="visit-title">
+    <div class="wire-visit-copy">
+      <p class="eyebrow">VISIT</p>
+      <h2 id="visit-title">Plan your visit.</h2>
+      <dl class="wire-visit-details">
+        {site.address && <div><dt>Studio</dt><dd>{site.address}</dd></div>}
+        {site.hours && <div><dt>Hours</dt><dd class="preserve-lines">{site.hours}</dd></div>}
+        {site.phone && <div><dt>Phone</dt><dd><a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a></dd></div>}
+        {site.email && <div><dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>}
+      </dl>
+    </div>
+    <div class="wire-visit-action"><BookingLink />{!site.booksyUrl && <p>Sending an enquiry does not confirm an appointment.</p>}</div>
+  </section>
+</Layout>

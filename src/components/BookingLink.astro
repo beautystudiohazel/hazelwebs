@@ -1,0 +1,6 @@
+---
+import { appointment } from '../data/site';
+interface Props { variant?: string; }
+const { variant = '' } = Astro.props;
+---
+<a class:list={variant === 'link' ? ['text-link', 'appointment-text-link'] : ['button', variant]} href={appointment.href} data-appointment>{appointment.label}<span aria-hidden="true">→</span></a>

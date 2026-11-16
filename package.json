@@ -1,0 +1,10 @@
+{
+  "name": "hazels-hair-and-skin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview", "check": "astro check", "test": "node scripts/verify.mjs" },
+  "engines": { "node": ">=22.12.0" },
+  "dependencies": { "astro": "latest", "@fontsource/dm-sans": "latest", "@fontsource/cormorant-garamond": "latest" },
+  "devDependencies": { "@astrojs/check": "latest", "typescript": "latest" }
+}

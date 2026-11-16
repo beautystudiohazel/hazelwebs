@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+import beauty from '../assets/beauty.jpg';
+import makeup from '../assets/makeup.jpg';
+import haircut from '../assets/haircut.jpg';
+import mockupHero from '../assets/mockup-hero.png';
+import owner from '../assets/owner.jpg';
+import hairWork2 from '../assets/hair-work-2.jpg';
+interface Props { kind?: 'portrait' | 'beauty' | 'makeup' | 'haircut' | 'mockupHero' | 'owner' | 'hairWork2'; eager?: boolean; class?: string; }
+const { kind = 'portrait', eager = false, class: className = '' } = Astro.props;
+const photos = {
+  portrait: { src: portrait, alt: 'Editorial portrait with softly styled hair' },
+  beauty: { src: beauty, alt: 'Editorial image of a facial mask application; not a Hazel’s client' },
+  makeup: { src: makeup, alt: 'Editorial arrangement of makeup and cosmetics' },
+  haircut: { src: haircut, alt: 'Editorial photograph of softly styled hair' },
+  mockupHero: { src: mockupHero, alt: 'Editorial portrait from the supplied design mockup; not a Hazel’s client' },
+  owner: { src: owner, alt: 'Portrait of the studio owner' },
+  hairWork2: { src: hairWork2, alt: 'Long dark hair photographed in a salon' },
+};
+---
+<Image src={photos[kind].src} alt={photos[kind].alt} class={className} widths={[400, 700, 1000, 1500]} sizes="(max-width: 700px) 100vw, 50vw" format="webp" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} />

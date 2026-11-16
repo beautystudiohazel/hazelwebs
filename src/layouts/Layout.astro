@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import { site, navigation } from '../data/config';
+import BookingLink from '../components/BookingLink.astro';
+import { Image } from 'astro:assets';
+import studioLogo from '../assets/hazel-beauty-studio-logo.jpeg';
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const pageTitle = `${title} | ${site.name}${site.city ? ` · ${site.city}` : ''}`;
+const metaDescription = `${description}${site.city ? ` Visit us in ${site.city}.` : ''}`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f3ed" />
+  <title>{pageTitle}</title><meta name="description" content={metaDescription} />
+  <meta property="og:title" content={pageTitle} /><meta property="og:description" content={metaDescription} /><meta property="og:type" content="website" />
+  {site.siteUrl && <link rel="canonical" href={new URL(Astro.url.pathname, site.siteUrl)} />}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark header-wordmark" href="/" aria-label="Hazel Beauty Studio home"><span class="brand-script">Hazel</span><span class="brand-descriptor">BEAUTY STUDIO</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
+    <div class="header-booking"><BookingLink /></div>
+    <details class="mobile-nav"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}<BookingLink /></nav></details>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="site-footer">
+    <div class="footer-top"><a class="footer-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="footer-logo" src={studioLogo} alt="" width={344} height={192} loading="lazy" /></a><p>Hair, skin, and beauty.<br />For the everyday & the unforgettable.</p><a class="text-link email" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">→</span></a></div>
+    <div class="footer-bottom"><span>© {new Date().getFullYear()} {site.name}</span><nav aria-label="Footer navigation">{navigation.filter(item => item.href !== '/' && item.label !== 'About').map(item => <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>{item.label}</a>)}</nav><span>{site.showRealWork ? 'Editorial images elsewhere are not studio or client work.' : 'Editorial imagery; not studio or client work.'}</span></div>
+  </footer>
+</body>
+</html>

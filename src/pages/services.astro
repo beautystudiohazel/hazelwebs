@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookingLink from '../components/BookingLink.astro';
+import Photo from '../components/Photo.astro';
+import { categories, priceLabel, featured } from '../data/services';
+import { serviceBrowseLinks, site } from '../data/config';
+---
+<Layout title="Services & prices" description="Browse the complete Hazel Beauty Studio price menu for facials, haircuts, styling, color, waxing, specialty hair treatments, makeup, and events.">
+  <section class="page-heading section"><p class="eyebrow">THE SERVICE MENU</p><h1>A little care.<br /><em>So many possibilities.</em></h1><p>Find your regular ritual or try a fresh direction.<br />Explore every service and price below.</p></section>
+  <section class="section service-discovery" aria-labelledby="featured-title">
+    <div class="section-heading"><div><p class="eyebrow">EXPLORE THE POSSIBILITIES</p><h2 id="featured-title">A closer look at our services.</h2></div><p>Editorial imagery for inspiration, not Hazel’s client work.</p></div>
+    <nav class="service-tabs" aria-label="Jump to a service category">{serviceBrowseLinks.map(item => <a href={item.href}>{item.label}</a>)}</nav>
+    <div class="featured-services">{featured.map(({ service, category }) => <a class="featured-service" href={`#${category.id}`}><div class="featured-photo"><Photo kind={service.featuredPhoto} /><span class="featured-arrow" aria-hidden="true">→</span></div><p class="eyebrow">{category.name}</p><h3>{service.name}</h3><p class="featured-price">{priceLabel(service)}</p></a>)}</div>
+  </section>
+  <div class="menu-layout section" id="full-menu"><aside><nav class="category-nav" aria-label="Service categories">{categories.map(category => <a href={`#${category.id}`}>{category.name}<span aria-hidden="true">→</span></a>)}</nav><p class="small">“From” indicates a starting price. Contact the studio to discuss final pricing and services without listed prices.</p></aside><div class="price-menu">{categories.map((category, index) => <section id={category.id} class="menu-category"><div class="menu-title"><span class="eyebrow">0{index + 1}</span><h2>{category.name}</h2></div><p>{category.intro}</p><dl>{category.services.map(service => <div class="price-row"><dt>{service.name}{service.note && <small>{service.note}</small>}</dt><dd>{priceLabel(service)}</dd></div>)}</dl></section>)}</div></div>
+  <section class="section contact-cta rose"><p class="eyebrow">FOUND SOMETHING YOU LOVE?</p><h2>Let’s plan your visit.</h2><BookingLink />{!site.booksyUrl && <p class="small">Inquiries do not confirm an appointment. We’ll confirm the details directly.</p>}</section>
+</Layout>
