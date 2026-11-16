@@ -3,9 +3,59 @@ import Layout from '../layouts/Layout.astro';
 import BookingLink from '../components/BookingLink.astro';
 import { categories, priceLabel } from '../data/services';
 import { site } from '../data/config';
+const getCategory = (id: string) => {
+  const category = categories.find(item => item.id === id);
+  if (!category) throw new Error(`Service menu is missing category "${id}"`);
+  return category;
+};
+const menuGroups = [
+  { id: 'hair', name: 'Hair', categories: ['cuts', 'styling', 'color', 'specialty-treatments'].map(getCategory) },
+  { id: 'skin-care', name: 'Skin Care', categories: [getCategory('skin-care')] },
+  { id: 'waxing', name: 'Waxing', categories: [getCategory('waxing')] },
+  { id: 'makeup-events', name: 'Makeup & Events', categories: [getCategory('makeup-events')] },
+];
 ---
 <Layout title="Services & prices" description="Browse the complete Hazel Beauty Studio price menu for facials, haircuts, styling, color, waxing, specialty hair treatments, makeup, and events.">
-  <section class="page-heading section"><p class="eyebrow">THE SERVICE MENU</p><h1>Find your <em>feel-good.</em></h1><p>Every service and price, in one place.<br />Questions or ready to book? Start here.</p><div class="menu-booking"><BookingLink />{!site.booksyUrl && <p class="small">An inquiry does not confirm an appointment.</p>}</div></section>
-  <div class="menu-layout section" id="full-menu"><aside><nav class="category-nav" aria-label="Jump to a service category">{categories.map(category => <a href={`#${category.id}`}>{category.name}<span aria-hidden="true">↓</span></a>)}</nav><p class="small">“From” means a starting price. Contact the studio to discuss final pricing and services without listed prices.</p></aside><div class="price-menu">{categories.map((category, index) => <section id={category.id} class="menu-category"><div class="menu-title"><span class="eyebrow">0{index + 1}</span><h2>{category.name}</h2></div><p>{category.intro}</p><dl>{category.services.map(service => <div class="price-row"><dt>{service.name}{service.note && <small>{service.note}</small>}</dt><dd>{priceLabel(service)}</dd></div>)}</dl></section>)}</div></div>
+  <section class="page-heading section">
+    <p class="eyebrow">THE SERVICE MENU</p>
+    <h1>Find your <em>feel-good.</em></h1>
+    <p>Every service and price, in one place.<br />Questions or ready to book? Start here.</p>
+    <div class="menu-booking"><BookingLink />{!site.booksyUrl && <p class="small">An inquiry does not confirm an appointment.</p>}</div>
+  </section>
+  <div class="menu-layout section" id="full-menu">
+    <aside>
+      <nav class="category-nav" aria-label="Jump to a service section">
+        {menuGroups.map(group => <a href={`#${group.id}`}>{group.name}<span aria-hidden="true">↓</span></a>)}
+      </nav>
+      <p class="small">“From” means a starting price. Contact the studio to discuss final pricing and services without listed prices.</p>
+    </aside>
+    <div class="price-menu">
+      {menuGroups.map((group, groupIndex) => (
+        <section id={group.id} class="menu-group" aria-labelledby={`menu-group-title-${group.id}`}>
+          <div class="menu-title menu-group-title">
+            <span class="eyebrow">0{groupIndex + 1}</span>
+            <h2 id={`menu-group-title-${group.id}`}>{group.name}</h2>
+          </div>
+          {group.categories.map(category => (
+            <div
+              id={group.categories.length > 1 ? category.id : undefined}
+              class:list={['menu-category', { 'menu-subcategory': group.categories.length > 1 }]}
+            >
+              {group.categories.length > 1 && <div class="menu-subtitle"><h3>{category.name}</h3></div>}
+              <p>{category.intro}</p>
+              <dl>
+                {category.services.map(service => (
+                  <div class="price-row">
+                    <dt>{service.name}{service.note && <small>{service.note}</small>}</dt>
+                    <dd>{priceLabel(service)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
+        </section>
+      ))}
+    </div>
+  </div>
   <section class="section contact-cta rose"><p class="eyebrow">FOUND SOMETHING YOU LOVE?</p><h2>Let’s plan your visit.</h2><BookingLink />{!site.booksyUrl && <p class="small">Inquiries do not confirm an appointment. We’ll confirm the details directly.</p>}</section>
 </Layout>

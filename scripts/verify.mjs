@@ -38,6 +38,14 @@ for (const route of routes) {
 }
 const menu = await readFile(filename('/services/'), 'utf8');
 assert.ok(menu.indexOf('data-appointment') < menu.indexOf('id="full-menu"'), 'Booking is reachable before the full menu');
+const categoryNav = menu.match(/<nav class="category-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
+assert.equal((categoryNav.match(/<a\b/g) || []).length, 4, 'Service menu has four easy-scan sections');
+for (const id of ['hair', 'skin-care', 'waxing', 'makeup-events']) {
+  assert.ok(categoryNav.includes(`href="#${id}"`), `Missing ${id} section link`);
+}
+for (const id of ['cuts', 'styling', 'color', 'specialty-treatments']) {
+  assert.ok(menu.includes(`id="${id}"`), `Missing preserved Hair subcategory anchor: ${id}`);
+}
 const home = await readFile(filename('/'), 'utf8');
 assert.equal((home.match(/class="services-overview-column"/g) || []).length, 3, 'Homepage categories do not repeat the bridal and events feature');
 assert.ok(home.includes('class="header-logo"') && home.includes('class="footer-logo"'), 'Homepage carries the matching header and footer logo');
