@@ -1,0 +1,83 @@
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/__mockup/current-site/_astro/cormorant-garamond-latin-400-normal.B-1hWBU7.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/__mockup/current-site/_astro/cormorant-garamond-latin-400-italic.Dc_OZ8oc.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/__mockup/current-site/_astro/dm-sans-latin-400-normal.CW0RaeGs.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/__mockup/current-site/_astro/dm-sans-latin-500-normal.B9HHJjqV.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --current-ivory: #f8f1ea;
+  --current-paper: #fffaf5;
+  --current-ink: #321d19;
+  --current-accent: #925154;
+}
+
+.current-pages {
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--current-ivory);
+  color: var(--current-ink);
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+.current-tabs {
+  display: flex;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px max(20px, calc((100% - 1200px) / 2));
+  border-bottom: 1px solid #dfc8bf;
+  background: var(--current-paper);
+}
+
+.current-tabs button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid #dfc8bf;
+  background: transparent;
+  color: var(--current-ink);
+  font: 500 13px/1.4 "DM Sans", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.current-tabs button[aria-pressed="true"] {
+  border-color: var(--current-accent);
+  background: var(--current-accent);
+  color: white;
+}
+
+.current-page-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 65px);
+  min-height: 650px;
+  border: 0;
+  background: var(--current-ivory);
+}

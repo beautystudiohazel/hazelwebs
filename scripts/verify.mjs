@@ -20,6 +20,8 @@ for (const route of routes) {
   assert.match(html, /<summary>/, `${route}: keyboard-operable mobile menu`);
   assert.match(html, /href="#main"/, `${route}: skip navigation link`);
   assert.match(html, /href="\/favicon.svg"/, `${route}: site icon`);
+  assert.match(html, /class="header-logo"/, `${route}: shared studio logo in header`);
+  assert.match(html, /class="footer-logo"/, `${route}: shared studio logo in footer`);
   for (const [, raw] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const url = new URL(raw.replaceAll('&amp;', '&'), `https://local.test${route}`);
     if (url.origin !== 'https://local.test') continue;
@@ -35,6 +37,9 @@ for (const route of routes) {
 }
 const menu = await readFile(filename('/services/'), 'utf8');
 assert.ok(menu.indexOf('data-appointment') < menu.indexOf('id="full-menu"'), 'Booking is reachable before the full menu');
+const home = await readFile(filename('/'), 'utf8');
+assert.equal((home.match(/class="services-overview-column"/g) || []).length, 3, 'Homepage categories do not repeat the bridal and events feature');
+assert.ok(home.includes('class="header-logo"') && home.includes('class="footer-logo"'), 'Homepage carries the matching header and footer logo');
 const events = await readFile(filename('/bridal-events/'), 'utf8');
 assert.ok(events.includes(`mailto:${email}?subject=Bridal%20%26%20event%20inquiry`), 'Event inquiry keeps its email destination');
 const contact = await readFile(filename('/about-contact/'), 'utf8');
