@@ -23,8 +23,8 @@ export const site = {
 export const navigation = [
   { href: '/', label: 'Home' },
   { href: '/services/', label: 'Services & Pricing' },
-  { href: '/about-contact/', label: 'About' },
-  { href: '/about-contact/#contact', label: 'Contact' },
+  { href: '/bridal-events/', label: 'Bridal & Events' },
+  { href: '/about-contact/', label: 'About & Contact' },
 ];
 
 // Links above the service photos. Change labels or destinations here.

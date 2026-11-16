@@ -1,0 +1,1 @@
+- [Astro workflow lifecycle](astro-workflow.md) — Astro 7 auto-detaches in agent environments; managed workflows must keep the server in the foreground.
