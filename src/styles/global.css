@@ -294,13 +294,13 @@ p { color: var(--muted); }
   :root { --page-gutter: 6%; }
   .site-header { min-height: 78px; flex-wrap: wrap; }
   .desktop-nav, .header-booking { display: none; }
-  .mobile-nav { position: relative; display: block; margin-left: auto; }
+  .mobile-nav { display: block; margin-left: auto; }
   .mobile-nav summary { cursor: pointer; padding: 10px 0 10px 12px; list-style: none; font-size: 15px; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
   .mobile-nav summary span { margin-left: 8px; color: var(--accent); }
   .mobile-nav nav {
-    position: absolute; top: calc(100% + 17px); right: calc(var(--page-gutter) * -1);
-    z-index: 10; display: flex; width: min(100vw, 390px); flex-direction: column;
+    position: absolute; top: 100%; right: 0; left: 0;
+    z-index: 10; display: flex; flex-direction: column;
     padding: 16px var(--page-gutter) 24px; border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line); background: var(--paper);
     box-shadow: 0 16px 26px rgba(50, 29, 25, .09);
