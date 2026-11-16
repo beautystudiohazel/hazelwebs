@@ -8,7 +8,7 @@ import '@fontsource/dm-sans/500.css';
 import { site, navigation } from '../data/config';
 import BookingLink from '../components/BookingLink.astro';
 import { Image } from 'astro:assets';
-import studioLogo from '../assets/hazel-beauty-studio-logo-hb-plum-v3.png';
+import studioLogo from '../assets/hazel-beauty-studio-hb-monogram-v4.png';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const pageTitle = `${title} | ${site.name}${site.city ? ` · ${site.city}` : ''}`;
@@ -27,14 +27,14 @@ const metaDescription = `${description}${site.city ? ` Visit us in ${site.city}.
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={studioLogo} alt="" width={600} height={306} fetchpriority="high" /><span class="header-brand-name">Hazel Beauty<br />Studio</span></a>
+    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={studioLogo} alt="" width={360} height={210} fetchpriority="high" /></a>
     <nav class="desktop-nav" aria-label="Main navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
     <div class="header-booking"><BookingLink /></div>
     <details class="mobile-nav"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}<BookingLink /></nav></details>
   </header>
   <main id="main"><slot /></main>
   <footer class="site-footer">
-    <div class="footer-top"><a class="footer-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="footer-logo" src={studioLogo} alt="" width={600} height={306} loading="lazy" /></a><p>Hair, skin, and beauty.<br />For the everyday & the unforgettable.</p><a class="text-link email" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">→</span></a></div>
+    <div class="footer-top"><a class="footer-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="footer-logo" src={studioLogo} alt="" width={360} height={210} loading="lazy" /></a><p>Hair, skin, and beauty.<br />For the everyday & the unforgettable.</p><a class="text-link email" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">→</span></a></div>
     <div class="footer-bottom"><span>© {new Date().getFullYear()} {site.name}</span><nav aria-label="Footer navigation">{navigation.filter(item => item.href !== '/').map(item => <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>{item.label}</a>)}</nav><span>Editorial images are inspiration, not client work.</span></div>
   </footer>
 </body>

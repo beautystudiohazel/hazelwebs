@@ -67,12 +67,8 @@ p { color: var(--muted); }
   gap: 28px; padding: 12px var(--page-gutter);
   background: var(--paper); border-bottom: 1px solid var(--line);
 }
-.header-logo-link { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; line-height: 1; }
-.header-logo { display: block; width: 190px; height: auto; }
-.header-brand-name {
-  color: var(--ink); font-family: var(--serif); font-size: 22px; font-weight: 500;
-  line-height: 1.02; white-space: nowrap;
-}
+.header-logo-link { display: block; flex: 0 0 auto; width: 190px; line-height: 0; }
+.header-logo { display: block; width: 100%; height: auto; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(15px, 2vw, 30px); }
 .desktop-nav a {
   padding: 9px 0; border-bottom: 1px solid transparent;
@@ -210,7 +206,7 @@ p { color: var(--muted); }
 .price-row dd { flex: 0 0 auto; margin: 0; color: var(--accent); text-align: right; }
 .contact-cta { text-align: center; }
 .contact-cta > p:not(.eyebrow) { max-width: 560px; margin: 20px auto 23px; }
-.contact-cta .button { margin-top: 4px; }
+.contact-cta .button { margin-top: 20px; }
 .rose { border-top: 1px solid var(--line); background: var(--rose); }
 
 /* Occasion page */
@@ -265,7 +261,7 @@ p { color: var(--muted); }
 /* Footer */
 .site-footer { padding: 38px var(--page-gutter) 20px; border-top: 1px solid var(--line); background: var(--paper); }
 .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding-bottom: 30px; }
-.footer-logo-link { display: block; flex: 0 1 240px; min-width: 0; }
+.footer-logo-link { display: block; flex: 0 1 205px; min-width: 0; }
 .footer-logo { width: 100%; height: auto; }
 .footer-top p { font-size: 15px; }
 .footer-bottom {
@@ -278,8 +274,7 @@ p { color: var(--muted); }
 
 @media (max-width: 1060px) {
   .site-header { gap: 17px; }
-  .header-logo { width: 160px; }
-  .header-brand-name { font-size: 19px; }
+  .header-logo-link { width: 160px; }
   .desktop-nav { gap: 15px; }
   .desktop-nav a { font-size: 12px; }
   .header-booking .button { min-height: 46px; padding: 11px 14px; font-size: 12px; }
@@ -325,9 +320,7 @@ p { color: var(--muted); }
   body { font-size: 15px; }
   .section { padding-block: 52px; }
   .site-header { min-height: 72px; padding-block: 10px; }
-  .header-logo-link { gap: 8px; }
-  .header-logo { width: 140px; }
-  .header-brand-name { font-size: 18px; }
+  .header-logo-link { width: 140px; }
   .wire-hero { display: flex; flex-direction: column; align-items: stretch; gap: 28px; padding-block: 42px; }
   .wire-hero h1 { font-size: clamp(44px, 11vw, 58px); }
   .wire-hero-copy .eyebrow { margin-bottom: 16px; }
@@ -393,7 +386,7 @@ p { color: var(--muted); }
   .contact-details > div:first-child { padding-top: 17px; border-top: 1px solid #cdbbb4; }
   .contact-details dd { font-size: 15px; }
   .footer-top { align-items: flex-start; flex-direction: column; gap: 18px; padding-bottom: 24px; }
-  .footer-logo-link { width: min(240px, 100%); flex-basis: auto; }
+  .footer-logo-link { width: min(205px, 100%); flex-basis: auto; }
   .footer-bottom { font-size: 13px; }
   .footer-bottom { align-items: flex-start; flex-direction: column; }
   .footer-bottom nav { gap: 10px 16px; }
@@ -401,9 +394,7 @@ p { color: var(--muted); }
   .not-found h1 { font-size: 48px; }
 }
 @media (max-width: 375px) {
-  .header-logo-link { gap: 7px; }
-  .header-logo { width: 100px; }
-  .header-brand-name { font-size: 16px; }
+  .header-logo-link { width: 120px; }
   .mobile-nav summary { font-size: 14px; }
   .event-services { grid-template-columns: 1fr; }
   .menu-title h2 { font-size: 31px; }
