@@ -8,8 +8,7 @@ import '@fontsource/dm-sans/500.css';
 import { site, navigation } from '../data/config';
 import BookingLink from '../components/BookingLink.astro';
 import { Image } from 'astro:assets';
-import horizontalLogo from '../assets/hazel-beauty-horizontal-logo.png';
-import footerSignature from '../assets/hazel-beauty-footer-signature.png';
+import connectedLogo from '../assets/hazel-beauty-connected-hbs-logo.png';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const pageTitle = `${title} | ${site.name}${site.city ? ` · ${site.city}` : ''}`;
@@ -29,7 +28,7 @@ const metaDescription = `${description}${site.city ? ` Visit us in ${site.city}.
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={horizontalLogo} alt="" width={1926} height={337} fetchpriority="high" /></a>
+    <a class="header-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="header-logo" src={connectedLogo} alt="" width={2077} height={363} fetchpriority="high" /></a>
     <nav class="desktop-nav" aria-label="Main navigation">{navigation.filter(({ href }) => href !== '/').map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
     <div class="header-booking"><BookingLink /></div>
     <details class="mobile-nav"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{navigation.map(({ href, label }) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}<BookingLink /></nav></details>
@@ -37,7 +36,7 @@ const metaDescription = `${description}${site.city ? ` Visit us in ${site.city}.
   <main id="main"><slot /></main>
   <footer class="site-footer">
     <div class="footer-top">
-      <a class="footer-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="footer-logo" src={footerSignature} alt="" width={1954} height={305} loading="lazy" /></a>
+      <a class="footer-logo-link" href="/" aria-label="Hazel Beauty Studio home"><Image class="footer-logo" src={connectedLogo} alt="" width={2077} height={363} loading="lazy" /></a>
       <nav class="footer-links" aria-label="Footer navigation">{navigation.filter(item => item.href !== '/').map(item => <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
       <a class="text-link email" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">→</span></a>
     </div>
