@@ -12,9 +12,9 @@ export const site = {
   address: '619 E Boughton Rd Ste 143-p, Bolingbrook, IL 60440',
   city: 'Bolingbrook',
   hours: 'Everyday 10am-7pm, By Appointment Only',
-  instagramUrl: '',
+  instagramUrl: 'https://www.instagram.com/hazel.beauty.studio/',
   mapUrl: '',
-  booksyUrl: 'https://hazelbeautystudio.booksy.com/j',
+  booksyUrl: 'https://hazelbeautystudio.booksy.com',
   showRealWork: false, // Set true only after client permission to publish IMG_7009.jpg is confirmed.
   logoPath: '', // original supplied logo, e.g. /images/hazels-logo.png
   siteUrl: '', // final HTTPS domain; enables canonical URLs
